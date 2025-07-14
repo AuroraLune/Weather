@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API - Dự báo thời tiết</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="weather-effect" id="weather-effect"></div>
+    
+    <div class="container">
+        <div class="weather-app">
+            <div class="unit-toggle">
+                <button class="unit-btn active" data-unit="celsius">°C</button>
+                <button class="unit-btn" data-unit="fahrenheit">°F</button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" id="search-input" placeholder="Nhập thành phố...">
+                <button class="search-btn" id="search-btn"><i class="fas fa-search"></i> Tìm kiếm</button>
+            </div>
+            
+            <div class="current-weather">
+                <div class="weather-main">
+                    <div class="temp" id="current-temp">24°C</div>
+                    <img class="weather-icon" id="current-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="Weather icon">
+                </div>
+                
+                <div class="weather-info">
+                    <h2 id="city-name">Hà Nội</h2>
+                    <div id="weather-desc">Trời nắng</div>
+                    <div class="weather-details">
+                        <div class="detail-card">
+                            <i class="fas fa-tint detail-icon"></i>
+                            <div>
+                                <div>Độ ẩm</div>
+                                <div id="humidity">65%</div>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-wind detail-icon"></i>
+                            <div>
+                                <div>Gió</div>
+                                <div id="wind">12 km/h</div>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-compress-alt detail-icon"></i>
+                            <div>
+                                <div>Áp suất</div>
+                                <div id="pressure">1012 hPa</div>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <i class="fas fa-eye detail-icon"></i>
+                            <div>
+                                <div>Tầm nhìn</div>
+                                <div id="visibility">10 km</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Dự báo 5 ngày tới</h3>
+            <div class="forecast-container" id="forecast-container">
+                <!-- Dữ liệu dự báo sẽ được thêm bằng JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+:root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --light: #f8f9fa;
+    --dark: #212529;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #72edf2 0%, #5151e5 100%);
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    transition: background 0.5s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.weather-app {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.search-container {
+    position: relative; /* mới thêm */
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.search-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-btn:hover {
+    background: var(--secondary);
+}
+
+.current-weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+}
+
+.temp {
+    font-size: 72px;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.weather-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.detail-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.forecast-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.forecast-day {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.forecast-icon {
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+}
+
+.unit-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.unit-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.unit-btn.active {
+    background: var(--primary);
+}
+
+/* Hiệu ứng thời tiết */
+.weather-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .current-weather {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .weather-main {
+        margin-bottom: 20px;
+    }
+}
+
+/* Autocomplete styles */
+.autocomplete-container {
+    position: absolute;
+    top: 100%; 
+    left: 0; 
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    width: 80%; 
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: black;
+}
+
+.autocomplete-item:hover {
+    background-color: #f0f0f0;
+}
