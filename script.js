@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('weatherSearchHistory', JSON.stringify(searchHistory));
             }
 
-            //resetSearch(); // Xóa nội dung ô tìm kiếm sau khi tìm kiếm
+            //resetSearch(); 
         }
     }
     
@@ -245,18 +245,12 @@ document.addEventListener('DOMContentLoaded', function() {
 */
     // Thêm hàm này vào phần khởi tạo
     function setupAutocomplete() {
-        //const searchInput = document.getElementById('search-input');
-        
         searchInput.addEventListener('input', async function(e) {
             const query = e.target.value.trim();
-            const container = document.querySelector('.autocomplete-container');
-
-            if (!container) {
-                return; 
-            }
 
             if (query.length < 2) {
-                container.remove();
+                const oldContainer = document.querySelector('.autocomplete-container');
+                if (oldContainer) oldContainer.remove();
                 return;
             }
             try {
@@ -286,6 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showAutocompleteResults(cities) {
+        console.log('Cities returned:', cities); 
         const container = document.createElement('div');
         container.className = 'autocomplete-container';
         
@@ -315,7 +310,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const oldContainer = document.querySelector('.autocomplete-container');
         if (oldContainer) oldContainer.remove();
         
-        // 
         const searchContainer = document.querySelector('.search-container');
         searchContainer.appendChild(container);
     }
@@ -332,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
             weatherEffect.appendChild(drop);
         }
         
-        // Thêm CSS động cho hiệu ứng mưa
         const style = document.createElement('style');
         style.textContent = `
             .rain-drop {
@@ -387,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
     
-    // Thêm các hàm tạo hiệu ứng khác (mây, mặt trời, sao...) tương tự
+    // Hiệu ứng mây
     function createCloudEffect() {
     for (let i = 0; i < 5; i++) {
         const cloud = document.createElement('div');
@@ -438,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 }
-
+// Hiệu ứng ngôi sao
 function createStarsEffect() {
     for (let i = 0; i < 100; i++) {
         const star = document.createElement('div');
@@ -467,7 +460,7 @@ function createStarsEffect() {
     `;
     document.head.appendChild(style);
 }
-
+// Hiệu ứng mặt trời
 function createSunEffect() {
     const sun = document.createElement('div');
     sun.className = 'sun-effect';

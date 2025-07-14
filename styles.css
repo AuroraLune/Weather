@@ -30,7 +30,7 @@ body {
 }
 
 .search-container {
-    position: relative; /* mới thêm */
+    position: relative; 
     display: flex;
     gap: 10px;
     margin-bottom: 30px;
@@ -175,13 +175,13 @@ body {
     position: absolute;
     top: 100%; 
     left: 0; 
+    right: 0;
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     max-height: 200px;
     overflow-y: auto;
     z-index: 1000;
-    width: 80%; 
     margin-top: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
