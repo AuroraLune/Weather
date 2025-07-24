@@ -8,7 +8,6 @@ Một ứng dụng web hiển thị dự báo thời tiết theo thời gian th�
 -  Hiệu ứng hình ảnh theo thời tiết (mưa, nắng, tuyết...)
 -  Hiển thị chi tiết: độ ẩm, tốc độ gió, áp suất
 -  Dự báo 5 ngày tới
--  Lưu lịch sử tìm kiếm
 
 ## 🛠 Công nghệ sử dụng
 - **Frontend**: HTML5, CSS3, JavaScript 
