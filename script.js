@@ -1,11 +1,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = '7f93be964af2f8ab910b5685d4cdcbda'; // Thay bằng API key của bạn
+    const apiKey = '7f93be964af2f8ab910b5685d4cdcbda'; // Thay bằng API key của bạn 
     let currentUnit = 'celsius';
     let currentTemperature = 0;
     let currentWindSpeed = 0; 
     
-    // Các phần tử DOM
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const unitBtns = document.querySelectorAll('.unit-btn');
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const weatherEffect = document.getElementById('weather-effect');
     const body = document.body;
     
-    // Mảng lịch sử tìm kiếm
     let searchHistory = JSON.parse(localStorage.getItem('weatherSearchHistory')) || [];
     
     // Khởi tạo ứng dụng
@@ -45,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Hàm khởi tạo
     function initApp() {
-        // Thử lấy vị trí hiện tại trước
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 position => {
@@ -54,15 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 error => {
                     console.error("Geolocation error:", error);
-                    // Mặc định hiển thị thời tiết Hà Nội nếu không lấy được vị trí
                     fetchWeather('Hanoi');
                 }
             );
         } else {
             fetchWeather('Hanoi');
         }
-        
-        // Tạo autocomplete cho ô tìm kiếm
         setupAutocomplete() 
     }
     
@@ -70,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function searchWeather() {
         const city = searchInput.value.trim();
         if (city) {
-            // Reset về °C mỗi khi tìm kiếm mới
             currentUnit = 'celsius';
             unitBtns.forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.unit === 'celsius');
@@ -78,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
             fetchWeather(city);
             
-            // Lưu vào lịch sử
             if (!searchHistory.includes(city)) {
                 searchHistory.unshift(city);
                 if (searchHistory.length > 5) searchHistory.pop();
@@ -139,11 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cập nhật thời tiết hiện tại
     function updateCurrentWeather(data) {
         cityName.textContent = data.name;
-        //currentTemperature = data.main.temp; // Lưu giá trị gốc để chuyển đổi sau
+        //currentTemperature = data.main.temp; 
         currentTemp.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDesc.textContent = data.weather[0].description;
         humidity.textContent = `${data.main.humidity}%`;
-        //currentWindSpeed = data.wind.speed; // Lưu giá trị gốc để chuyển đổi sau
+        //currentWindSpeed = data.wind.speed;
         wind.textContent = `${Math.round(data.wind.speed * 3.6)} km/h`; // m/s -> km/h
         pressure.textContent = `${data.main.pressure} hPa`;
         visibility.textContent = `${(data.visibility / 1000).toFixed(1)} km`; // m -> km
@@ -156,14 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
         updateWeatherTheme(data.weather[0].main, data.weather[0].icon.includes('n'));
     }
     
-    // Cập nhật dự báo 5 ngày
+    // Cập nhật dự báo 5 ngày tới
     function updateForecast(data) {
         forecastContainer.innerHTML = '';
         
-        // Lọc dữ liệu để lấy 1 mốc mỗi ngày (12:00 trưa)
         const dailyForecasts = data.list.filter(item => {
             return item.dt_txt.includes('12:00:00');
-        }).slice(0, 5); // Lấy 5 ngày
+        }).slice(0, 5); 
         
         dailyForecasts.forEach(day => {
             const date = new Date(day.dt * 1000);
@@ -209,15 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Cập nhật theme và hiệu ứng theo thời tiết
     function updateWeatherTheme(weatherCondition, isNight) {
-        // Xóa tất cả các lớp hiệu ứng cũ
         weatherEffect.innerHTML = '';
         body.className = '';
         
-        // Thêm lớp theo điều kiện thời tiết
         body.classList.add(weatherCondition.toLowerCase());
         if (isNight) body.classList.add('night');
         
-        // Tạo hiệu ứng thời tiết
         switch(weatherCondition.toLowerCase()) {
             case 'rain':
                 createRainEffect();
@@ -243,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.value = ''; // Xóa nội dung đã nhập
     }
 */
-    // Thêm hàm này vào phần khởi tạo
+    // Thiết lập khung gợi ý khi gõ tìm kiếm
     function setupAutocomplete() {
         searchInput.addEventListener('input', async function(e) {
             const query = e.target.value.trim();
@@ -291,7 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
             item.addEventListener('click', () => {
                 document.getElementById('search-input').value = city.name;
 
-                // Reset về °C khi chọn địa điểm mới
                 currentUnit = 'celsius';
                 unitBtns.forEach(btn => {
                     btn.classList.toggle('active', btn.dataset.unit === 'celsius');
@@ -306,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
             container.appendChild(item);
         });
     
-        // Xóa kết quả cũ nếu có
         const oldContainer = document.querySelector('.autocomplete-container');
         if (oldContainer) oldContainer.remove();
         
